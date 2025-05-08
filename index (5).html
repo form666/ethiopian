@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethio666</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Noto Sans Ethiopic', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid red;
+    }
+
+    header img {
+      width: 100px;
+    }
+
+    h1 {
+      margin: 10px 0 0;
+      font-size: 36px;
+      color: red;
+    }
+
+    .datetime {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .language-select {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      color: red;
+      border-bottom: 1px solid red;
+      padding-bottom: 5px;
+    }
+
+    .scanner {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      height: 200px;
+      margin: 20px auto;
+      background-color: #222;
+      border: 2px solid red;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .scanner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+    }
+
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: red;
+      animation: scan 2s linear infinite;
+    }
+
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+
+    .fingerprint {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      background-color: #444;
+      border: 2px solid red;
+      border-radius: 50%;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .fingerprint::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+      background-color: #666;
+      border-radius: 50%;
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 18px;
+      color: green;
+      display: none;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin: 10px auto;
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      .container {
+        padding: 10px;
+      }
+
+      .submit-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg" alt="Ethiopian Flag">
+    <h1>የኢትዮጵያ 666 ኢሉምናቲ</h1>
+    <div class="datetime" id="ethiopianDateTime"></div>
+  </header>
+
+  <div class="container">
+    <div>
+      <label>ስም</label><input type="text">
+      <label>የአባት ስም</label><input type="text">
+      <label>የአያት ስም</label><input type="text">
+      <label>የእናት ስም</label><input type="text">
+      <label>ስልክ ቁጥር</label><input type="tel">
+      <label>የባንክ ስም</label><input type="text">
+      <label>የባንክ ሂሳብ ቁጥር</label><input type="text">
+    </div>
+
+    <div class="section">
+      <h2>መታወቂያ ያስገቡ</h2>
+      <p>እባኮትን የመታወቂያዎን ሁለቱንም ገፆች ያስገቡ።</p>
+      <input type="file" accept="image/*">
+      <input type="file" accept="image/*">
+      <div class="message" style="display:block;">ጨርሰዋል</div>
+    </div>
+
+    <div class="section">
+      <h2>የፊት አሻራ መስጫ</h2>
+      <div class="scanner">
+        <img src="https://via.placeholder.com/300x200?text=Face+Scan" alt="Face Scan">
+        <div class="scan-line"></div>
+      </div>
+      <div class="message" style="display:block;">ጨርሰዋል</div>
+    </div>
+
+    <div class="section">
+      <h2>የእጅጣት አሻራ መስጫ</h2>
+      <div class="fingerprint"></div>
+      <div class="message" style="display:block;">ጨርሰዋል</div>
+    </div>
+
+    <button class="submit-btn">ፎርም ሞልቼ ጨርሻለሁ</button>
+  </div>
+</body>
+</html>
