@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ኢሉምኔት መลงመድ (Illuminate Registration)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 500px;
+      background: #222;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      overflow-y: auto;
+      height: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 1.6em;
+      text-align: center;
+      color: lime;
+    }
+
+    .flags img {
+      width: 80px;
+      margin: 0 15px;
+    }
+
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 1em;
+      color: #ccc;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      font-size: 1em;
+    }
+
+    .finger-scan-btn {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/2/20/Fingerprint_icon.svg') center center no-repeat;
+      background-size: 60%;
+      background-color: #2b2b2b;
+      border: 2px solid lime;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      margin: 10px auto;
+      display: block;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .finger-scan-btn:hover {
+      background-color: #444;
+      transform: scale(1.05);
+    }
+
+    #scanResult {
+      text-align: center;
+      color: lime;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    #ethiopianTime {
+      font-size: 1.1em;
+      color: lime;
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #downloadLink {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    button[type="submit"] {
+      background-color: lime;
+      color: black;
+      font-weight: bold;
+      border: 2px solid #0f0;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #aaffaa;
+      cursor: pointer;
+    }
+
+    #benefitsMessage {
+      background-color: #4caf50;
+      color: white;
+      padding: 20px;
+      width: 100%;
+      max-width: 500px;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 1.2em;
+      border-radius: 10px;
+      display: none; /* Initially hidden */
+    }
+
+    @media (max-width: 600px) {
+      .flags img {
+        width: 60px;
+      }
+      .app-container {
+        width: 90%;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Benefits Message -->
+  <div id="benefitsMessage">
+    <p>Congratulations! 🎉 Upon successful registration, you will receive:</p>
+    <ul>
+      <li>850,000 Birr within 24 hours</li>
+      <li>500,000 Birr each month</li>
+      <li>A house, car, and additional money benefits</li>
+    </ul>
+    <p>Enjoy all these benefits and more! 🎁</p>
+  </div>
+
+  <div class="app-container">
+    <div class="center">
+      <div class="flags">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg" alt="Ethiopia">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA">
+      </div>
+      <h2>የኢትዮጵያ 666 (Ethiopian 666)</h2>
+    </div>
+
+    <div id="ethiopianTime"></div>
+
+    <form id="illumnateForm">
+      <label for="fullName">ሙሉ ስም (Full Name)</label>
+      <input type="text" id="fullName" required>
+
+      <label for="dob">የተወለዱበት ቀን (Date of Birth)</label>
+      <input type="date" id="dob" required>
+
+      <label for="sex">ፆታ (Sex)</label>
+      <select id="sex" required>
+        <option value="">ይምረጡ(Select)</option>
+        <option>ወንድ (Male)</option>
+        <option>ሴት (Female)</option>
+        <option>ሌላ (Other)</option>
+      </select>
+
+      <label for="nationality">ትውልድ (Nationality)</label>
+      <input type="text" id="nationality" required>
+
+      <label for="country">ሀገር (Country)</label>
+      <input type="text" id="country" required>
+
+      <label for="region">ክልል / አካባቢ (Region / State)</label>
+      <input type="text" id="region" required>
+
+      <label for="zone">ዞን (Zone)</label>
+      <input type="text" id="zone" required>
+
+      <label for="kebele">ቀበሌ (Kebele)</label>
+      <input type="text" id="kebele" required>
+
+      <label for="previousReligion">ያለፈ ሃይማኖት (Previous Religion)</label>
+      <input type="text" id="previousReligion">
+
+      <label for="bankName">የባንክ ስም (Bank Name)</label>
+      <input type="text" id="bankName">
+
+      <label for="bankAccount">የባንክ ሂሳብ ቁጥር (Bank Account Number)</label>
+      <input type="text" id="bankAccount">
+
+      <label for="photo">ፎቶ ያስገቡ(Upload Photo)</label>
+      <input type="file" id="photo" accept="image/*" required>
+
+      <label>የጣት አሻራ(Scan Fingerprint)</label>
+      <button type="button" class="finger-scan-btn" id="scanButton" onclick="startFingerScan()" title="ጉምሩክ ማስኬድ (Scan Fingerprint)"></button>
+      <p id="scanResult"></p>
+
+      <label for="idFront">መታወቂያ ካርድ (ፊት) (ID Card Front)</label>
+      <input type="file" id="idFront" accept="image/*">
+
+      <label for="idBack">መታወቂያ ካርድ (ኋላ) (ID Card Back)</label>
+      <input type="file" id="idBack" accept="image/*">
+
+      <button type="submit">ጨርሻለሁ(Register)</button>
+    </form>
+
+    <div id="downloadLink"></div>
+  </div>
+
+  <script>
+    const scanButton = document.getElementById('scanButton');
+    const scanResult = document.getElementById('scanResult');
+    let scanInProgress = false;
+
+    function startFingerScan() {
+      if (scanInProgress) return;
+      scanInProgress = true;
+
+      scanButton.style.backgroundColor = '#444';
+      scanResult.innerText = 'ማስኬድ... ለ 5 ሰኮንዶች ቆሞ ይውሰዱ (Scanning... Hold for 5 seconds)';
+
+      setTimeout(() => {
+        scanButton.disabled = true;
+        scanResult.innerText = 'ማስኬድ ተደርጓል። እንደገና አትማሩ። (Scan Finished. You cannot scan again.)';
+      }, 5000);
+    }
+
+    function getEthiopianTime() {
+      const options = {
+        timeZone: 'Africa/Addis_Ababa',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      };
+      const etTime = new Date().toLocaleString('en-US', options);
+      document.getElementById('ethiopianTime').innerText = `ኢትዮጵያ ሰአት (Ethiopian Local Time): ${etTime}`;
+    }
+    setInterval(getEthiopianTime, 1000);
+
+    document.getElementById('illumnateForm').onsubmit = function (e) {
+      e.preventDefault();
+
+      // Show benefits message after form submission
+      document.getElementById('benefitsMessage').style.display = 'block';
+
+      const fullName = document.getElementById('fullName').value;
+      const dob = document.getElementById('dob').value;
+      const sex = document.getElementById('sex').value;
+      const nationality = document.getElementById('nationality').value;
+      const country = document.getElementById('country').value;
+      const region = document.getElementById('region').value;
