@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>የኢሉምናቲ የአባልነት ምዝገባ(Illuminate Registration + Scan)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: black;
+      color: lime;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: device-width;
+      align-items: device-width;
+      min-height: 100vh;
+      flex-direction: column;
+      position: mousedown;
+    }
+
+    .app-container {
+      width: device-width;
+      max-width: 500px;
+      background:black;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      overflow-y: auto;
+    }
+
+    h2 {
+      font-size: 4.5em;
+      text-align: middle;
+      color: red;
+    }
+
+    .flags {
+      display: flex;
+      justify-content: 130px width;
+      margin-bottom: 0px;
+    }
+
+    .flags img {
+      width: device-width;
+      margin: 0px;
+    }
+
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0px;
+    }
+
+    label {
+      display: block;
+      margin-top: 1px;
+      font-size: 1.2em;
+      color: lime;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 9px;
+      border: none;
+      background-color: white;
+      color: black;
+      font-size: 1.1em;
+    }
+
+    .finger-scan-btn {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/2/20/Fingerscan_icon.svg') center center infinite-repeat;
+      background-size: 90%;
+      background-color: lime;
+      border: 4px solid white;
+      border-radius: 60%;
+      width: 120px;
+      height: 145px;
+      margin: 20px auto;
+      display: block;
+      cursor: pointer;
+    }
+
+    .finger-scan-btn.scanning {
+      animation: pulse 6s infinite;
+      box-shadow: 0 0 25px 10px
+      lime;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.7); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(0.5); }
+    }
+
+    #eyeScanContainer {
+      width: 300px;
+      height: 200px;
+      margin: 30px auto;
+      position: relative;
+      background: lime;
+      border: 5px solid white;
+      border-radius: 120%/200%;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    #eyeIcon {
+      width: 90%;
+      height: 90%;
+      position: absolute;
+      
+    }
+
+    #scanLine {
+      position: absolute;
+      width: 120%;
+      height: 1px;
+      background-color: red;
+      top: 0;
+      animation: none
+    }
+
+    @keyframes scanEye {
+      100% { top: 100; }
+      100% { top: 100%; }
+      
+    }
+
+    #ethiopianTime {
+      font-size: 1.09em;
+      color: white;
+      margin-top: 100px;
+      text-align: middle;
+      font-weight: italic;
+    }
+
+    #benefitsMessage {
+      background-color: #lime;
+      color: lime;
+      padding: 20px;
+      width: 100%;
+      text-align: absolute;
+      font-size: 1.2em;
+      border-radius: 10px;
+      display: none;
+      margin-top: 20px;
+    }
+
+    button[type="submit"] {
+      background-color: lime;
+      color: black;
+      font-weight: bold;
+      border: 2px solid #0f0;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: white;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      margin-top: 10px;
+      max-width: 100%;
+    }
+
+    .upload-preview {
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .flags img {
+        width: 150px;
+      }
+      .app-container {
+        width: 10;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <div class="topmiddel">
+      <div class="flags">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Flag_of_Ethiopia.svg" alt="Ethiopia">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA">
+      
+      </div>
+      <h2>666 በኢትዮጵያ</h2>
+    </div>
+<div id="welcomeMessage">
+      
+      <p>6👁6👁6</p>
+      <p>🎉🎉🎉መልካም ዜና🎉🎉🎉!</p>
+
+      <p>የኢሉሚናቲ ማኅበረሰብ
+አጭር መግቢያ</p> 
+<p>እስካሁን ያደረግናቸው እጅግ ረቀቅ ባለ መንገድ አዳዲስ
+ አባሎቻችንን የመቀበል ጥናት 100% የተሳካ ነበር ብዙዎች
+በሩ ተከፍቶላቸው የገቡ ሲሆን በርካቶች ደግሞ በር ላይ
+ናቸው የእነሱንም በር ለመክፈት ዝግጁነታችን አሁንም
+ተጠናክሮ ይቀጥላል ኢትዮጵያ የምትባለውን ሀገር 75%
+አምላኪ ለማድረግ አሁንም በረቀቀ ዘዴ እንቀጥላለን....</p>
+      <p>ለምዝገባ የሚያስፈልጉ መረጃዎችን ሰጥተው ከጨረሱ በኋላ,</p>
+      
+      <p>ምዝገባዎ ተቀባይነት ባገኘ በ24 ሰዓት ⏱ ውስጥ የሚከተሉትን ጥቅማጥቅሞች ያገኛሉ:</p>
+      <ul>
+        <li>500,000 ብር የመጀመሪያ ክፍያ ይከፈልዎታል 
+በየ ወሩ</li>
+<li>ከ 250,000 እስከ 750,000 ብር ወርሀዊ ክፍያ </li>
+<li>ተአዋቂ ዝነኛ ዘፋኝ: አልያም እርስዎ በሚፈሉገት የዝና መንደር ይቀላቀላሉ</li>
+<li>ማጂክ ሪንግ ቀለበት</li>
+<li>የእጅ የወርቅ ሰአት</li>
+<l>እናም በጣም በርካታ ጥቅሞች አሉት።</l>
+        
+      </ul>
+      <p>አባል በመሆን የተለያዪ ጥቅማጥቅሞችን ያግኙ! 🎁🎁🎁
+      </p>
+      <p>6👁6👁6</p>
+    </div>
+    <div id="ethiopianTime"></div>
+
+
+
+    <form id="illumnateForm">
+      <label for="fullName">ስም እስከ አባት (Full Name)</label>
+      <input type="text" id="fullName" required>
+      
+<label for="grandfatherName">የአያት ስም(Grand Father Name)</label>
+      <input type="text" id="grandfatherName" required>
+      
+<label for="motherName">የእናት ስም(Mother Name)</label>
+      <input type="text" id="motherName" required>
+      
+<label for="bop">የተወለዱበት ቦታ (Birth Of Place)</label>
+      <input type="text" id="bop" required>
+
+      <label for="dob">የተወለዱበት ቀን (Date of Birth)</label>
+      <input type="text" id="dob" required>
+<label for="marriage">ትዳር (Marriage)</label>
+      <select id="marriage" required>
+        <option value="">ይምረጡ(Select)</option>
+        <option>ያገባ (Married)</option>
+        <option>ያላገባ(Single)</option>
+      </select>
+      <label for="sex">ፆታ (Sex)</label>
+      <select id="sex" required>
+        <option value="">ይምረጡ(Select)</option>
+        <option>ወንድ (Male)</option>
+        <option>ሴት (Female)</option>
+      </select>
+<label for="phone Number">ስልክ ቁጥር (phone Number)</label>
+<input type="number" required>
+
+      <label for="nationality">ዜግነት (Nationality)</label>
+      <input type="text" id="nationality" required>
+
+      <label for="region">ክልል / አካባቢ (Region / State)</label>
+      <input type="text" id="region" required>
+
+      <label for="zone">ዞን (Zone)</label>
+      <input type="text" id="zone" required>
+      
+ <label for="City">ከተማ (City)</label>
+      <input type="text" id="City" required>
+      <label for="kebele">ቀበሌ (Kebele)</label>
+      <input type="text" id="kebele" required>
+      
+<label for="previousReligion">የቀድሞ ሃይማኖት (previous Religion)</label>
+      <select id="previousReligion" required>
+        <option value="">ይምረጡ (Select)</option>
+        <option>ኦርቶዶክስ (Orthodox)</option>
+        <option>ካቶሊክ (Catholic)</option>
+        <option>ፕሮቴስታንት (Protestant)</option>
+        <option>ሙስሊም (Muslim)</option>
+        <option>ሌላ (Other)</options>
+         </select>
+         
+<label for="bankName">የባንክ ስም (bankName)</label>
+      <select id="bankName" required>
+        <option value="">ይምረጡ (Select)</option>
+        <option>አባይ ባንክ (Abay Bank)</option>
+        <option>አዋሽ ባንክ (Awash Bank)</option>
+        <option>አቢሲኒያ ባንክ (Abyssinia Bank)</option>
+        <option>ብርሀን የባንክ (Berhan Bank)</option>
+        <option>ንግድ ባንክ (Commercial Bank)</option>
+        <option>ዳሽን ባንክ (Dashen bankName)</option>
+         </select>
+      
+      <label for="bankAccount">የባንክ ሂሳብ ቁጥር (Bank Account Number)</label>
+      <input type="number" id="bankAccount">
+
+      <div class="upload-preview">
+        <label for="photo">ጉርድ ፎቶ ያስገቡ(Upload Photo)</label>
+        <input type="file" id="photo" accept="image/*" required>
+        <img id="photoPreview" style="display: none;" />
+ <label>የጣት አሻራ (Fingerprint Scan)</label>
+      <button type="button" class="finger-scan-btn" id="scanButton"></button>
+      <p id="scanResult"></p>
+        <label for="idFront">የመታወቂያ ካርድ ፊት (ID Card Front)</label>
+        <input type="file" id="idFront" accept="image/*" required>
+        <img id="idFrontPreview" style="display: none;" />
+
+        <label for="idBack">የመታወቂያ ካርድ ጀርባ (ID Card Back)</label>
+        <input type="file" id="idBack" accept="image/*" required>
+        <img id="idBackPreview" style="display: none;" />
+      </div>
+
+
+
+      <label>የዓይን አሻራ (Eye Scan)</label>
+      <div id="eyeScanContainer">
+        <div id="eyeIcon">
+          <div id="scanLine"></div>
+        </div>
+      </div>
+      <p id="eyeScanResult"></p>
+      
+
+      <button type="submit">ጨርሻለሁ 666(Register)</button>
+    </form>
+
+    <div id="benefitsMessage">
+      <p>🎉🎉🎉እንኳን ደስ አልዎት🎉🎉🎉!</p>
+
+      
+      <p>ለምዝገባ የሚያስፈልጉ መረጃዎችን ሰጥተዋል ,</p>
+      
+      <p>ምዝገባዎ ተቀባይነት ባገኘ 24 ሰዓት ⏱ ውስጥ የሚከተሉትን ጥቅማጥቅሞች ያገኛሉ:</p>
+      <ul>
+        <li>500,000 ብር የመጀመሪያ ክፍያ ይከፈልዎታል 
+በየ ወሩ</li>
+<li>ከ 250,000 እስከ 750,000 ብር ወርሀዊ ክፍያ </li>
+<li>ተአዋቂ ዝነኛ ዝፍኝ: አልያም አርሱወ የሚፈሉገት የዝና መንደር ይቀላቀላሉ</li>
+<li>ማጂክ ሪንግ ቀለበት</li>
+<li>የእጅ የወርቅ ሰአት</li>
+<l>እናም በጣም በርካታ ጥቅሞች አሉት።</l>
+        
+      </ul>
+      <p>አባል በመሆን የተለያዪ ጥቅማጥቅሞችን ያግኙ! 🎁🎁🎁
+      🪬666🪬</p>
+    </div>
+  </div>
+
+  <audio id="scanSound" src="https://www.soundjay.com/button/sounds/button-16.mp3" preload="auto"></audio>
+
+  <script>
+    function getEthiopianTime() {
+      const options = {
+        timeZone: 'Africa/Addis_Ababa',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+      };
+      const etTime = new Date().toLocaleString('en-US', options);
+      document.getElementById('ethiopianTime').innerText = `ኢትዮጵያ ሰአት (Ethiopian Local Time): ${etTime}`;
+    }
+    setInterval(getEthiopianTime, 1000);
+
+    // Fingerprint Scan
+    const scanBtn = document.getElementById('scanButton');
+    const scanResult = document.getElementById('scanResult');
+    const scanSound = document.getElementById('scanSound');
+    let fingerHoldTimer;
+    let fingerScanned = false;
+
+    scanBtn.addEventListener('mousedown', () => {
+      if (fingerScanned) return;
+      scanBtn.classList.add('scanning');
+      navigator.vibrate?.([100, 50, 100, 50]);
+
+      fingerHoldTimer = setTimeout(() => {
+        fingerScanned = true;
+        navigator.vibrate?.([200, 100, 200]);
+        scanBtn.classList.remove('scanning');
+        scanBtn.disabled = true;
+        scanResult.innerText = 'የጣት አሻራ ሰጥተው ጨርሰዋል ። (Scan Confirmed)';
+        scanSound.play();
+      }, 4000);
+    });
+
+
+    scanBtn.addEventListener('mouseleave', () => {
+      clearTimeout(fingerHoldTimer);
+      scanBtn.classList.remove('scanning');
+    });
+
+    // Eye Scan
+    let eyeScanned = false;
+    const eyeIcon = document.getElementById('eyeIcon');
+    const scanLine = document.getElementById('scanLine');
+    const eyeScanResult = document.getElementById('eyeScanResult');
+
+    eyeIcon.addEventListener('mouseenter', () => {
+      if (eyeScanned) return;
+      scanLine.style.animation = 'scanEye 3s linear';
+
+      setTimeout(() => {
+        scanLine.style.animation = 'none';
+        eyeScanned = true;
+        eyeScanResult.innerText = 'የዓይን አሻራ ሰጥተው ጨርሰዋል። (Scan Confirmed)';
+        scanSound.play();
+      }, 3000);
+    });
+
+    // Image Preview for Uploaded Files
+    function previewImage(inputId, previewId) {
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+
+      input.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    previewImage("photo", "photoPreview");
+    previewImage("idFront", "idFrontPreview");
+    previewImage("idBack", "idBackPreview");
+
+    // Form Submission
+    document.getElementById('illumnateForm').onsubmit = function (e) {
+      e.preventDefault();
+      document.getElementById('benefitsMessage').style.display = 'block';
+    };
+  </script>
+</body>
+</html>
